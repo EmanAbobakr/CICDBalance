@@ -1,5 +1,3 @@
-package Test
-
 import kotlin.system.exitProcess
 
 fun main() {

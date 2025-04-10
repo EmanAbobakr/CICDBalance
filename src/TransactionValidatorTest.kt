@@ -1,9 +1,6 @@
-package Test
-
 import Models.Category
 import Models.TransactionType
 import Services.TransactionValidatorImplementation
-import UITransaction
 import Utils.DateParserImplementation
 
 class TransactionValidatorTest {
