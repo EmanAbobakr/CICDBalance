@@ -5,7 +5,7 @@ import Utils.DateParserInterface
 import java.time.LocalDate
 
 class TransactionValidatorImplementation(
-    private val dateParser: DateParserInterface,
+    private val dateParser: DateParserInterface
 ) : TransactionValidatorInterface {
 
     override
