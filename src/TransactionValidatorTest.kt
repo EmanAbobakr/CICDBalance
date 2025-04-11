@@ -1,16 +1,20 @@
+package Test
+
 import Models.Category
 import Models.TransactionType
 import Services.TransactionValidatorImplementation
+import UITransaction
 import Utils.DateParserImplementation
+import test
 
 class TransactionValidatorTest {
 
-    fun runAllTests() : Boolean {
+    fun runAllTests() {
         println("\n\n${"#".repeat(10)} Transaction Validator Tests ${"#".repeat(10)}\n\n")
-        return testValidation()
+        testValidation()
     }
 
-    private fun testValidation() : Boolean {
+    private fun testValidation() {
         println("\n${"*".repeat(10)} Test Validations ${"*".repeat(10)}\n")
         val trValidator = TransactionValidatorImplementation(DateParserImplementation())
         var tr = UITransaction(
@@ -19,14 +23,11 @@ class TransactionValidatorTest {
             category = Category("Cat 1"),
             transactionType = TransactionType.EXPENSES
         )
-        if (!test(
-                name = "Valid Transaction",
-                actualResult = trValidator.isValidAmount(tr.amount) && trValidator.isValidDate(tr.date),
-                expectedResult = true
-            )) {
-            return false
-        }
-
+        test(
+            name = "Valid Transaction",
+            actualResult = trValidator.isValidAmount(tr.amount) && trValidator.isValidDate(tr.date),
+            expectedResult = true
+        )
 
         tr = UITransaction(
             amount = -150.0,
@@ -34,13 +35,11 @@ class TransactionValidatorTest {
             category = Category("Cat 1"),
             transactionType = TransactionType.EXPENSES
         )
-        if (!test(
-                name = "Invalid Transaction, negative amount",
-                actualResult = trValidator.isValidAmount(tr.amount) && trValidator.isValidDate(tr.date),
-                expectedResult = false
-            )) {
-            return false
-        }
+        test(
+            name = "Invalid Transaction, negative amount",
+            actualResult = trValidator.isValidAmount(tr.amount) && trValidator.isValidDate(tr.date),
+            expectedResult = false
+        )
 
         tr = UITransaction(
             amount = 0.0,
@@ -48,13 +47,12 @@ class TransactionValidatorTest {
             category = Category("Cat 1"),
             transactionType = TransactionType.EXPENSES
         )
-        if (!test(
-                name = "Invalid Transaction, zero amount",
-                actualResult = trValidator.isValidAmount(tr.amount) && trValidator.isValidDate(tr.date),
-                expectedResult = false
-            )) {
-            return false
-        }
+        test(
+            name = "Invalid Transaction, zero amount",
+            actualResult = trValidator.isValidAmount(tr.amount) && trValidator.isValidDate(tr.date),
+            expectedResult = false
+        )
+
         tr = UITransaction(
             amount = 150.0,
             date = "08042025",
@@ -138,6 +136,5 @@ class TransactionValidatorTest {
             actualResult = trValidator.isValidAmount(tr.amount) && trValidator.isValidDate(tr.date),
             expectedResult = false
         )
-        return true
     }
 }

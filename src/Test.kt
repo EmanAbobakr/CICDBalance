@@ -1,21 +1,16 @@
+import Test.TransactionValidatorTest
 import kotlin.system.exitProcess
 
 fun main() {
-    if (TransactionValidatorTest().runAllTests()) {
-        println("✅ All tests passed.")
-    } else {
-        println("❌ Some tests failed.")
-        exitProcess(1)
-    }
-
+    TransactionValidatorTest().runAllTests()
+    println("✅ All tests passed.")
 }
 
-fun test(name: String, actualResult: Any, expectedResult: Any) : Boolean{
+fun test(name: String, actualResult: Any, expectedResult: Any) {
     if (actualResult == expectedResult) {
         println("\u001b[32mSuccess - $name \u001b[0m")
-        return true
     } else {
         println("\u001b[31mFailed - $name \u001b[0m")
-        return false
+        exitProcess(1)
     }
 }
